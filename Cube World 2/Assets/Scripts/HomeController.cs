@@ -17,7 +17,8 @@ namespace Com.Haptor.Cube_World
         [SerializeField] GameObject join_Game_UI;
         [SerializeField] GameObject create_Game_UI;
         [SerializeField] GameObject edit_Cube_UI;
-
+        [SerializeField] GameObject home_UI;
+        [SerializeField] GameObject game_Mode_UI;
         #endregion
 
         #region Methods
@@ -26,7 +27,9 @@ namespace Com.Haptor.Cube_World
         {
             Debug.Log(PhotonNetwork.LocalPlayer.NickName + " has entered the home screen.");
             player_Name.text = PhotonNetwork.LocalPlayer.NickName;
-            join_Game_UI.SetActive(true);
+            home_UI.SetActive(true);
+            game_Mode_UI.SetActive(false);
+            join_Game_UI.SetActive(false);
             create_Game_UI.SetActive(false);
             edit_Cube_UI.SetActive(false);
         }
@@ -38,6 +41,8 @@ namespace Com.Haptor.Cube_World
 
         public void onJoinGameButtonClicked()
         {
+            home_UI.SetActive(false);
+            game_Mode_UI.SetActive(false);
             join_Game_UI.SetActive(true);
             create_Game_UI.SetActive(false);
             edit_Cube_UI.SetActive(false);
@@ -45,6 +50,8 @@ namespace Com.Haptor.Cube_World
 
         public void onCreateGameButtonClicked()
         {
+            home_UI.SetActive(false);
+            game_Mode_UI.SetActive(true);
             join_Game_UI.SetActive(false);
             create_Game_UI.SetActive(true);
             edit_Cube_UI.SetActive(false);
@@ -52,9 +59,20 @@ namespace Com.Haptor.Cube_World
 
         public void onEditCubeButtonClicked()
         {
+            home_UI.SetActive(false);
+            game_Mode_UI.SetActive(false);
             join_Game_UI.SetActive(false);
             create_Game_UI.SetActive(false);
             edit_Cube_UI.SetActive(true);
+        }
+
+        public void onHomeButtonClicked()
+        {
+            home_UI.SetActive(true);
+            game_Mode_UI.SetActive(false);
+            join_Game_UI.SetActive(false);
+            create_Game_UI.SetActive(false);
+            edit_Cube_UI.SetActive(false);
         }
 
         #endregion
